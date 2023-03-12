@@ -1,7 +1,7 @@
 import Link from "next/link"
 const Navbar = () => {
     return (
-        <nav className="bg-gray-900">
+        <nav className="bg-gray-900 fixed w-full">
             <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
                 <div className="relative flex items-center justify-between h-16">
                     {/* Navbar brand */}
