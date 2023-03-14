@@ -27,6 +27,18 @@ export default function ShortenUrl({ children }) {
     const [shortUrl, setShortUrl] = useState("http://example.com");
     const [shortenedUrl, setShortenedUrl] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [links, setLinks] = useState([{
+        id: "kljAlk4",
+        name: "Google",
+        description: "Link to google",
+        url: "http://google.com/"
+    }, {
+        id: "kagsAlk4",
+        name: "Yahoo",
+        description: "Link to yahoo",
+        shortUrl: "http://yahoo.com/",
+        totalVisits: 15
+    }]);
 
     const handleOriginalUrlChange = (event) => {
         setOriginalUrl(event.target.value);
