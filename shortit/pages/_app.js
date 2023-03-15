@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import '../styles/globals.css'
+import { SessionProvider } from "next-auth/react"
 
-function MyApp({ Component, pageProps }) {
+
+function MyApp({ session, Component, pageProps }) {
   return <>
     {/* <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
 
@@ -16,6 +18,7 @@ function MyApp({ Component, pageProps }) {
         });
     `}
       </Script> */}
+      <SessionProvider session={session}>
     <Head>
 
       <title>ShortIt</title>
@@ -30,7 +33,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </Layout>
 
-
+      </SessionProvider>
   </>
 }
 
