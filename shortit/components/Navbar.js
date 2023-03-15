@@ -1,5 +1,9 @@
 import Link from "next/link"
+import { useSession, signOut } from "next-auth/react";
 const Navbar = () => {
+
+    let { data: session } = useSession();
+    
     return (
         <nav className="bg-gray-900 fixed w-full">
             <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -24,21 +28,35 @@ const Navbar = () => {
                                     Contact
                                 </a>
                             </Link>
-                            <Link legacyBehavior href="/login">
-                                <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                                    Login
-                                </a>
-                            </Link>
-                            <Link legacyBehavior href="/register">
-                                <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                                    Register
-                                </a>
-                            </Link>
+
                             <Link legacyBehavior href="/dashboard">
                                 <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
                                     Dashboard
                                 </a>
                             </Link>
+
+                            {session ?
+
+                                <Link legacyBehavior href="#">
+                                    <a onClick={signOut} className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                        Logout
+                                    </a>
+                                </Link>
+                                :
+                                <>
+                                    <Link legacyBehavior href="/login">
+                                        <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                            Login
+                                        </a>
+                                    </Link>
+                                    <Link legacyBehavior href="/register">
+                                        <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                                            Register
+                                        </a>
+                                    </Link>
+                                </>
+                            }
+
                         </div>
                     </div>
                 </div>
