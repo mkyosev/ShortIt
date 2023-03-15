@@ -1,38 +1,19 @@
 import Link from "next/link";
 import React, { useState } from 'react'
 
+//TODO:
+//1. Charts 
 export default function Analytics({ children }) {
-    const [url, setUrl] = useState('');
-    const [customSlug, setCustomSlug] = useState('');
-    const [isCustom, setIsCustom] = useState(false);
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     console.log('Submitting form...', { url, customSlug, isCustom });
-    // };
-
-    const handleCustomSlugChange = (event) => {
-        setCustomSlug(event.target.value);
-    };
-
-    const handleUrlChange = (event) => {
-        setUrl(event.target.value);
-    };
-
-    const handleIsCustomChange = (event) => {
-        setIsCustom(event.target.checked);
-    };
-
-    const [originalUrl, setOriginalUrl] = useState("");
-    const [shortUrl, setShortUrl] = useState("http://example.com");
-    const [shortenedUrl, setShortenedUrl] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [expandedRowIndex, setExpandedRowIndex] = useState(null);
+
+
     const [links, setLinks] = useState([{
         id: "kljAlk4",
         name: "Google",
         description: "Link to google",
-        url: "http://google.com/",
+        shortUrl: "http://google.com/",
         totalVisits: 12,
         details: "More info here"
     }, {
@@ -43,31 +24,6 @@ export default function Analytics({ children }) {
         totalVisits: 15,
         details: "More info here"
     }]);
-
-    const handleOriginalUrlChange = (event) => {
-        setOriginalUrl(event.target.value);
-    };
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        setIsLoading(true);
-
-        try {
-            // const response = await axios.post("/api/shorten", { url: originalUrl });
-
-            setShortenedUrl('http://goog/asd.com');
-        } catch (error) {
-            console.error(error);
-        }
-
-        setIsLoading(false);
-    };
-
-    const copyToClipboard = async (event) => {
-        event.preventDefault();
-
-    };
 
     return (
         <>
@@ -119,7 +75,7 @@ export default function Analytics({ children }) {
                                                         <td className="px-6 py-4 whitespace-nowrap">
                                                             <div className="text-sm text-gray-500">{link.description}</div>
                                                         </td>
-                                                        <td className="px-6 py-4 whitespace-nowrap">
+                                                        <td className="px-6 py-4 whitespace-nowrap cursor-pointer">
                                                             <div className="text-sm text-blue-500">{link.shortUrl}</div>
                                                         </td>
                                                         <td className="px-6 py-4 whitespace-nowrap">
