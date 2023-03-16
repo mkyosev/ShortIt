@@ -13,6 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     const result = await signIn('credentials', {
+      callbackUrl: '/dashboard',
       redirect: false,
       email: email,
       password: password,
@@ -22,12 +23,10 @@ const Login = () => {
     if (result.error) {
       console.log(result.error);
     } else {
-      router.push('/');
+      router.push('/dashboard');
     }
   };
-  // const [session, loading] = useSession()
-  const { data: session } = useSession()
-  console.log(session);
+  
   return (
     <div className="flex justify-center items-center h-screen">
       <form onSubmit={(e) => handleSubmit(e, 'login')} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/3 mx-auto">
@@ -74,14 +73,14 @@ const Login = () => {
         </div>
         <div className="flex items-center justify-center mt-6">
           <button
-            onClick={() => signIn('github')}
+            onClick={() => signIn('github', { callbackUrl: '/dashboard'})}
             className="w-12 h-12 flex items-center justify-center bg-white text-gray-900 border border-gray-300 rounded-full hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             <BsGithub />
           </button>
           <span className="mx-4 text-gray-400">|</span>
           <button
-            onClick={() => signIn('google')}
+            onClick={() => signIn('google', { callbackUrl: '/dashboard'})}
             className="w-12 h-12 flex items-center justify-center bg-white text-gray-900 border border-gray-300 rounded-full hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             <BsGoogle />
