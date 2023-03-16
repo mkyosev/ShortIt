@@ -38,8 +38,10 @@ model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
+  password      String?
   emailVerified DateTime?
   image         String?
+  userLevel     Int       @default(1)
   accounts      Account[]
   sessions      Session[]
   urls          Url[]
@@ -55,17 +57,17 @@ model VerificationToken {
 
 model Url {
   id           String    @id
-  userId       String
-  url          String
-  slug         String    @unique
-  isCustomSlug Boolean
-  active       Boolean //
-  deleted      Boolean //
+  userId       String?
+  url          String?
+  slug         String?    @unique
+  isCustomSlug Boolean?
+  active       Boolean? //
+  deleted      Boolean? //
   visits       Visit[]
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @default(now())
   validUntil   DateTime?
-  user         User      @relation(fields: [userId], references: [id])
+  user         User?      @relation(fields: [userId], references: [id])
 }
 
 model Visit {
