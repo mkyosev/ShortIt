@@ -71,15 +71,6 @@ async function createUrl(req, res) {
                         active: true,
                         deleted: false,
                         validUntil: twoDaysLater,
-                        visits: {
-                            create: {
-                                userAgent: 'Unknown',
-                                ipAddress: '127.0.0.1',
-                                deviceType: 'Unknown',
-                                browser: 'Unknown',
-                                os: 'Unknown'
-                            }
-                        },
                         user: {
                             connect: {
                                 id: userId,
@@ -114,15 +105,6 @@ async function createUrl(req, res) {
                         active: true,
                         deleted: false,
                         validUntil: twoDaysLater,
-                        // visits: {
-                        //     create: {
-                        //         userAgent: 'Unknown',
-                        //         ipAddress: '127.0.0.1',
-                        //         deviceType: 'Unknown',
-                        //         os: 'Unknown',
-                        //         browser: 'Unknown'
-                        //     }
-                        // },
                         user: {
                             connect: {
                                 id: userId,
