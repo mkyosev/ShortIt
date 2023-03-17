@@ -24,7 +24,10 @@ export async function getServerSideProps(context) {
             where: {
                 userId: userId,
             },
+            include: { visits: true },
         });
+
+        await prisma.$disconnect();
 
         userUrls = userUrls.map((url) => ({
             ...url,
@@ -32,6 +35,16 @@ export async function getServerSideProps(context) {
             updatedAt: url.updatedAt ? url.updatedAt.toISOString() : "",
             validUntil: url.validUntil ? url.validUntil.toISOString() : ""
           }));
+        // userUrls.visits = userUrls.visits.map((visit) => ({
+        //     ...visit,
+        //     createdAt: visit.createdAt ? visit.createdAt.toISOString() : "",
+        // }));
+
+        userUrls.forEach(url => {
+            url.visits.forEach((visit) => {
+                visit.createdAt = visit.createdAt ? visit.createdAt.toISOString() : ""
+            })
+        });
         // console.log(userUrls);
         return {
             props: {
