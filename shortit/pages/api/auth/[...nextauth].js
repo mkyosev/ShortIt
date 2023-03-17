@@ -108,22 +108,19 @@ export const authOptions = {
     jwt: true,
     strategy: 'jwt'
   },
-  callbacks: {
-    async jwt(token, user) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
-    },
-    async session(session, token) {
-      if (token && token.id) {
-        session.user.id = token.id;
-      }
-
-      console.log("3333" +token);
-      console.log("4444" +session);
-      return session;
-    },
-  },
+  // callbacks: {
+  //   async jwt(token, user) {
+  //     if (user) {
+  //       token.id = user.id;
+  //     }
+  //     return token;
+  //   },
+  //   async session(session, token) {
+  //     if (token && token.id) {
+  //       session.user.id = token.id;
+  //     }
+  //     return session;
+  //   },
+  // },
 }
 export default NextAuth(authOptions)
