@@ -59,7 +59,7 @@ model Url {
   id           String    @id @default(cuid())
   userId       String
   url          String?
-  slug         String?    @unique
+  slug         String?   @unique
   isCustomSlug Boolean?
   active       Boolean? //
   deleted      Boolean? //
@@ -71,13 +71,14 @@ model Url {
 }
 
 model Visit {
-  id         String   @id
+  id         String   @id @default(cuid())
   urlId      String
   userAgent  String?
   browser    String?
   ipAddress  String?
   deviceType String?
   os         String?
+  osVersion  String?
   createdAt  DateTime @default(now())
   url        Url      @relation(fields: [urlId], references: [id])
 }

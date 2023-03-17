@@ -29,7 +29,8 @@
     "react-icons": "^4.8.0",
     "styled-components": "^5.3.8",
     "tailwindcss": "^3.2.7",
-    "tailwindcss-gradients": "^3.0.0"
+    "tailwindcss-gradients": "^3.0.0",
+    "useragent": "^2.3.0"
   },
   "devDependencies": {
     "eslint": "8.36.0",
