@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from 'react'
+import axios from 'axios'
 
 export default function ShortenUrl({ children }) {
     const [url, setUrl] = useState('');
@@ -16,6 +17,7 @@ export default function ShortenUrl({ children }) {
     };
 
     const handleUrlChange = (event) => {
+        console.log(event.target.value);
         setUrl(event.target.value);
     };
 
@@ -23,26 +25,12 @@ export default function ShortenUrl({ children }) {
         setIsCustom(event.target.checked);
     };
 
-    const [originalUrl, setOriginalUrl] = useState("");
-    const [shortUrl, setShortUrl] = useState("http://example.com");
-    const [shortenedUrl, setShortenedUrl] = useState("");
+    const [shortUrl, setShortUrl] = useState("");
+  
+  
     const [isLoading, setIsLoading] = useState(false);
-    const [links, setLinks] = useState([{
-        id: "kljAlk4",
-        name: "Google",
-        description: "Link to google",
-        url: "http://google.com/"
-    }, {
-        id: "kagsAlk4",
-        name: "Yahoo",
-        description: "Link to yahoo",
-        shortUrl: "http://yahoo.com/",
-        totalVisits: 15
-    }]);
-
-    const handleOriginalUrlChange = (event) => {
-        setOriginalUrl(event.target.value);
-    };
+  
+    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -50,9 +38,16 @@ export default function ShortenUrl({ children }) {
         setIsLoading(true);
 
         try {
-            // const response = await axios.post("/api/shorten", { url: originalUrl });
-
-            setShortenedUrl('http://goog/asd.com');
+            console.log("ori" + url);
+            console.log(customSlug);
+            const response = await axios.post("/api/url/create", {
+                url: url,
+                slug: customSlug,
+                isCustomSlug: isCustom,
+                validDays: 30
+            });
+            console.log(response);
+            setShortUrl('http://localhost:3000/' + response.data.slug);
         } catch (error) {
             console.error(error);
         }
