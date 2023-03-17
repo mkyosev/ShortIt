@@ -78,6 +78,7 @@ async function createUrl(req, res) {
                         },
                     }
                 })
+                prisma.$disconnect();
                 res.status(200).json(newUrl);
             } else {
                 res.status(401).json({ error: 'Custom slug already exists, please use a different one!' })
@@ -112,6 +113,7 @@ async function createUrl(req, res) {
                         },
                     }
                 })
+                prisma.$disconnect();
                 res.status(200).json(newUrl);
             } else {
                 res.status(401).json({ error: 'An error has occured, please try again!' })
