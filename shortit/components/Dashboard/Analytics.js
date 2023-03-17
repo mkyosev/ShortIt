@@ -1,29 +1,38 @@
 import Link from "next/link";
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 //TODO:
 //1. Charts 
-export default function Analytics({ children }) {
+export default function Analytics({ children, urls }) {
 
     const [isLoading, setIsLoading] = useState(false);
     const [expandedRowIndex, setExpandedRowIndex] = useState(null);
 
+    const [links, setLinks] = useState([]);
+    // const [links, setLinks] = useState([{
+    //     id: "kljAlk4",
+    //     name: "Google",
+    //     description: "Link to google",
+    //     shortUrl: "http://google.com/",
+    //     totalVisits: 12,
+    //     details: "More info here"
+    // }, {
+    //     id: "kagsAlk4",
+    //     name: "Yahoo",
+    //     description: "Link to yahoo",
+    //     shortUrl: "http://yahoo.com/",
+    //     totalVisits: 15,
+    //     details: "More info here"
+    // }]);
 
-    const [links, setLinks] = useState([{
-        id: "kljAlk4",
-        name: "Google",
-        description: "Link to google",
-        shortUrl: "http://google.com/",
-        totalVisits: 12,
-        details: "More info here"
-    }, {
-        id: "kagsAlk4",
-        name: "Yahoo",
-        description: "Link to yahoo",
-        shortUrl: "http://yahoo.com/",
-        totalVisits: 15,
-        details: "More info here"
-    }]);
+    // useEffect(async () => {
+    //     const userUrls = await prisma.url.findMany({
+    //         where: {
+    //             userId: userId,
+    //         },
+    //     });
+    //     setLinks(userUrls);
+    // })
 
     return (
         <>
@@ -40,13 +49,7 @@ export default function Analytics({ children }) {
                                                     scope="col"
                                                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                 >
-                                                    Name
-                                                </th>
-                                                <th
-                                                    scope="col"
-                                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                >
-                                                    Description
+                                                    Original URL
                                                 </th>
                                                 <th
                                                     scope="col"
@@ -58,7 +61,13 @@ export default function Analytics({ children }) {
                                                     scope="col"
                                                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                                 >
-                                                    Total Visits
+                                                    Created
+                                                </th>
+                                                <th
+                                                    scope="col"
+                                                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                                >
+                                                    Valid
                                                 </th>
                                                 <th scope="col" className="relative px-6 py-3">
                                                     <span className="sr-only">Edit/Delete</span>
@@ -66,20 +75,20 @@ export default function Analytics({ children }) {
                                             </tr>
                                         </thead>
                                         <tbody className="bg-white divide-y divide-gray-200">
-                                            {links.map((link, index) => (
+                                            {urls.map((link, index) => (
                                                 <React.Fragment key={link.id}>
                                                     <tr className="bg-white hover:bg-gray-200">
                                                         <td className="px-6 py-4 whitespace-nowrap">
-                                                            <div className="text-sm font-medium text-gray-900">{link.name}</div>
+                                                            <div className="text-sm font-medium text-gray-900">{link.url}</div>
                                                         </td>
                                                         <td className="px-6 py-4 whitespace-nowrap">
-                                                            <div className="text-sm text-gray-500">{link.description}</div>
+                                                            <div className="text-sm text-gray-500">http://localhost:3000/{link.slug}</div>
                                                         </td>
                                                         <td className="px-6 py-4 whitespace-nowrap cursor-pointer">
-                                                            <div className="text-sm text-blue-500">{link.shortUrl}</div>
+                                                            <div className="text-sm text-blue-500">{link.createdAt}</div>
                                                         </td>
                                                         <td className="px-6 py-4 whitespace-nowrap">
-                                                            <div className="text-sm text-gray-500">{link.totalVisits}</div>
+                                                            <div className="text-sm text-gray-500">{link.validUntil}</div>
                                                         </td>
                                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                             <button
