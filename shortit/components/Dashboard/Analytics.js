@@ -9,30 +9,10 @@ export default function Analytics({ children, urls }) {
     const [expandedRowIndex, setExpandedRowIndex] = useState(null);
 
     const [links, setLinks] = useState([]);
-    // const [links, setLinks] = useState([{
-    //     id: "kljAlk4",
-    //     name: "Google",
-    //     description: "Link to google",
-    //     shortUrl: "http://google.com/",
-    //     totalVisits: 12,
-    //     details: "More info here"
-    // }, {
-    //     id: "kagsAlk4",
-    //     name: "Yahoo",
-    //     description: "Link to yahoo",
-    //     shortUrl: "http://yahoo.com/",
-    //     totalVisits: 15,
-    //     details: "More info here"
-    // }]);
 
-    // useEffect(async () => {
-    //     const userUrls = await prisma.url.findMany({
-    //         where: {
-    //             userId: userId,
-    //         },
-    //     });
-    //     setLinks(userUrls);
-    // })
+    //    urls.forEach(element => {
+    //         console.log(element.visits);
+    //    });
 
     return (
         <>
@@ -121,7 +101,18 @@ export default function Analytics({ children, urls }) {
                                                     {index === expandedRowIndex && (
                                                         <tr>
                                                             <td colSpan="5"> {/* makes the column spread to all 5 parent columns */}
-                                                                <div className="px-6 py-4 text-sm text-gray-500">{link.details}</div>
+                                                                {link.visits.length > 0 ? link.visits.map((current, index) => (
+                                                                    <>
+                                                                        <div className="px-6 py-4 text-sm text-gray-500">{current.userAgent}</div>
+                                                                        <div className="px-6 py-4 text-sm text-gray-500">{current.browser}</div>
+                                                                        <div className="px-6 py-4 text-sm text-gray-500">{current.ipAddress}</div>
+                                                                        <div className="px-6 py-4 text-sm text-gray-500">{current.deviceType}</div>
+                                                                        <div className="px-6 py-4 text-sm text-gray-500">{current.os}</div>
+                                                                        <div className="px-6 py-4 text-sm text-gray-500">{current.osVersion}</div>
+                                                                    </>
+                                                                ))
+                                                                    : "No visitors data yet."
+                                                                }
                                                             </td>
                                                         </tr>
                                                     )}
