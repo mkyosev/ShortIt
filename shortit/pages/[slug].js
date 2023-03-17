@@ -11,12 +11,13 @@ const SlugPage = () => {
 
     useEffect(() => {
         if (slug != undefined && slug != "undefined") {
+            console.log(slug);
             axios.post('/api/url/get', {
                 slug
             }).then(res => {
-                console.log(res.data);
                 setRedirectUrl(res.data.url)
-                window.location.href = res.data.url
+                console.log(res.data);
+                // window.location.href = res.data.url
             })
         }
     }, [slug])
