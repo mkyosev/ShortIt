@@ -56,8 +56,8 @@ model VerificationToken {
 }
 
 model Url {
-  id           String    @id
-  userId       String?
+  id           String    @id @default(cuid())
+  userId       String
   url          String?
   slug         String?    @unique
   isCustomSlug Boolean?
@@ -67,17 +67,17 @@ model Url {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @default(now())
   validUntil   DateTime?
-  user         User?      @relation(fields: [userId], references: [id])
+  user         User      @relation(fields: [userId], references: [id])
 }
 
 model Visit {
   id         String   @id
   urlId      String
-  userAgent  String
-  browser    String
-  ipAddress  String
-  deviceType String
-  os         String
+  userAgent  String?
+  browser    String?
+  ipAddress  String?
+  deviceType String?
+  os         String?
   createdAt  DateTime @default(now())
   url        Url      @relation(fields: [urlId], references: [id])
 }
