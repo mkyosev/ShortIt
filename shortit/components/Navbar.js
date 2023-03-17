@@ -18,19 +18,6 @@ const Navbar = () => {
                     {/* Navbar links */}
                     <div className="flex-shrink-0">
                         <div className="flex space-x-4">
-                            <Link legacyBehavior href="/about">
-                                <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                                    About
-                                </a>
-                            </Link>
-                            <Link legacyBehavior href="/contact">
-                                <a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                                    Contact
-                                </a>
-                            </Link>
-
-
-
                             {session ?
                                 <>
                                     <Link legacyBehavior href="/dashboard">
